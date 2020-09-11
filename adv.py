@@ -30,7 +30,7 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
-def reverseDir(dir):
+def reverse_dir(dir):
     if dir == "n":
         return "s"
     if dir == "s":
@@ -41,20 +41,24 @@ def reverseDir(dir):
         return "e"
     else:
         return None
-        
+
 def createTraversalPath():
     adjacency = dict()
     traversal = Stack()
-    lastDir = None
+    last_dir = None
+    last_room = None
     while len(adjacency) < len(world.rooms):
         if player.current_room not in adjacency:
             adj = dict()
-            for ext in player.current_room.getExits():
+            for ext in player.current_room.get_exits():
                 adj[ext] = "?"
+            adjacency[player.current_room] = adj
+        if last_room:
+            adjacency[last_room][last_dir] = player.current_room
+            adjacency[player.current_room][reverse_dir(last_dir)] = last_room
+        last_room = player.current_room
 
-# TRAVERSAL TEST
-visited_rooms = set()
-
+traversal_path = createTraversalPath()
 
 # TRAVERSAL TEST - DO NOT MODIFY
 visited_rooms = set()
