@@ -30,6 +30,18 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
+def createTraversalPath():
+    adjacency = dict()
+    traversal = Stack()
+    lastDir = None
+    while len(adjacency) < len(world.rooms):
+        if player.current_room not in adjacency:
+            adj = dict()
+            for ext in player.current_room.getExits():
+                adj[ext] = "?"
+
+# TRAVERSAL TEST
+visited_rooms = set()
 
 
 # TRAVERSAL TEST - DO NOT MODIFY
