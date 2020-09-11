@@ -58,7 +58,13 @@ def createTraversalPath():
             adjacency[player.current_room][reverse_dir(last_dir)] = last_room
         last_room = player.current_room
 
-traversal_path = createTraversalPath()
+        for ext, room in enumerate(adjacency[player.current_room]):
+            if room == "?":
+                last_dir = ext
+                player.travel(ext)
+                break
+
+
 
 # TRAVERSAL TEST - DO NOT MODIFY
 visited_rooms = set()
