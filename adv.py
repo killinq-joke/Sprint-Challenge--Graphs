@@ -30,6 +30,18 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
+def reverseDir(dir):
+    if dir == "n":
+        return "s"
+    if dir == "s":
+        return "n"
+    if dir == "e":
+        return "w"
+    if dir == "w":
+        return "e"
+    else:
+        return None
+        
 def createTraversalPath():
     adjacency = dict()
     traversal = Stack()
